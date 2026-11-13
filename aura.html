@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURA VISION | AR Glasses 3.0</title>
+
+<style>
+:root {
+    --bg:#080d14;
+    --card:#111c29;
+    --card2:#162536;
+    --text:#f2f7ff;
+    --muted:#a1b1c2;
+    --blue:#28baff;
+    --cyan:#70e3ff;
+    --border:#26394b;
+}
+
+[data-theme="light"] {
+    --bg:#f3f7fb;
+    --card:#ffffff;
+    --card2:#e9f2f9;
+    --text:#101c2a;
+    --muted:#596b7d;
+    --blue:#087fc2;
+    --cyan:#007fae;
+    --border:#d5e0e9;
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body {
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial,sans-serif;
+    line-height:1.7;
+    transition:.3s;
+}
+
+.container {
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+section { padding:85px 0; }
+
+h1,h2,h3 { line-height:1.3; }
+
+h2 {
+    font-size:36px;
+    margin-bottom:20px;
+}
+
+p { color:var(--muted); }
+
+.blue { color:var(--blue); }
+
+.tagline {
+    color:var(--cyan);
+    letter-spacing:4px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.section-title { margin-bottom:40px; }
+
+.section-title h2 { margin-top:12px; }
+
+/* NAVIGATION */
+
+header {
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:var(--bg);
+    border-bottom:1px solid var(--border);
+}
+
+nav {
+    min-height:75px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.logo {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:21px;
+    font-weight:bold;
+    letter-spacing:3px;
+}
+
+.logo img {
+    width:48px;
+    height:48px;
+    object-fit:contain;
+}
+
+.nav-links {
+    display:flex;
+    align-items:center;
+    gap:17px;
+}
+
+.nav-links a {
+    color:var(--muted);
+    text-decoration:none;
+    font-size:13px;
+}
+
+.nav-links a:hover { color:var(--blue); }
+
+.theme-btn,.menu-btn {
+    padding:10px 14px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    cursor:pointer;
+}
+
+.menu-btn { display:none; }
+
+/* BUTTONS */
+
+.btn {
+    display:inline-block;
+    padding:13px 23px;
+    background:var(--blue);
+    color:#06121c;
+    text-decoration:none;
+    border-radius:7px;
+    font-weight:bold;
+    border:none;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.btn:hover { opacity:.8; }
+
+.btn-outline {
+    background:transparent;
+    color:var(--text);
+    border:1px solid var(--blue);
+}
+
+/* HOME */
+
+.hero {
+    min-height:650px;
+    display:flex;
+    align-items:center;
+    background:radial-gradient(circle at 80% 40%,#087fc233,transparent 45%);
+}
+
+.hero-content {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:45px;
+}
+
+.hero h1 {
+    font-size:clamp(45px,6vw,75px);
+    margin:20px 0;
+    letter-spacing:-2px;
+}
+
+.hero p {
+    font-size:17px;
+    max-width:550px;
+}
+
+.hero-image img {
+    width:100%;
+    border-radius:15px;
+    box-shadow:0 20px 60px #0008;
+    cursor:zoom-in;
+}
+
+.hero-buttons {
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+/* STATISTICS */
+
+.stats {
+    background:var(--card);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+}
+
+.stats-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    padding:25px 0;
+}
+
+.stat {
+    text-align:center;
+    border-right:1px solid var(--border);
+}
+
+.stat:last-child { border:0; }
+
+.stat strong {
+    display:block;
+    font-size:20px;
+    color:var(--blue);
+}
+
+.stat span {
+    font-size:13px;
+    color:var(--muted);
+}
+
+/* CARDS */
+
+.cards {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.card {
+    background:var(--card);
+    padding:27px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    transition:.3s;
+}
+
+.card:hover {
+    transform:translateY(-6px);
+    border-color:var(--blue);
+}
+
+.card h3 { margin:15px 0; }
+
+.card p { font-size:14px; }
+
+.icon {
+    font-size:36px;
+    color:var(--blue);
+}
+
+/* ABOUT */
+
+.about-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+.about-image img {
+    width:100%;
+    border-radius:15px;
+}
+
+.about-content h3 { margin:22px 0 8px; }
+
+.about-list {
+    list-style:none;
+    margin-top:20px;
+}
+
+.about-list li {
+    color:var(--muted);
+    padding:7px 0;
+}
+
+.about-list li:before {
+    content:"✓";
+    color:var(--cyan);
+    margin-right:12px;
+}
+
+/* FEATURES */
+
+.feature-card { min-height:220px; }
+
+.feature-card .icon { font-size:35px; }
+
+/* SOLUTIONS */
+
+.solution-number {
+    color:var(--blue);
+    font-size:35px;
+    font-weight:bold;
+}
+
+/* GALLERY */
+
+.gallery {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.gallery-item {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+    cursor:zoom-in;
+}
+
+.gallery-item img {
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.gallery-item:hover img { transform:scale(1.06); }
+
+.gallery-item h3 { padding:15px; }
+
+.gallery-item p { padding:0 15px 18px; }
+
+/* IMAGE ZOOM */
+
+#imageModal {
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    background:rgba(0,0,0,.96);
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+#imageModal img {
+    max-width:95%;
+    max-height:90vh;
+    object-fit:contain;
+}
+
+#imageModal button {
+    position:absolute;
+    top:20px;
+    right:30px;
+    font-size:40px;
+    background:none;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+/* TABLE */
+
+.table-container { overflow-x:auto; }
+
+table {
+    width:100%;
+    border-collapse:collapse;
+    background:var(--card);
+    min-width:650px;
+}
+
+th,td {
+    padding:16px;
+    border:1px solid var(--border);
+    text-align:left;
+}
+
+th {
+    color:var(--cyan);
+    background:var(--card2);
+}
+
+td { color:var(--muted); }
+
+/* PRICING */
+
+.price {
+    font-size:32px;
+    font-weight:bold;
+    color:var(--blue);
+    margin:15px 0;
+}
+
+.price-card ul {
+    padding-left:20px;
+    color:var(--muted);
+}
+
+.price-card li { margin-bottom:9px; }
+
+/* DISCOUNT PROMO */
+
+.discount-banner {
+    background:linear-gradient(120deg,#063e62,#087fc2);
+    padding:25px;
+    border-radius:12px;
+    margin-bottom:30px;
+    color:white;
+}
+
+.discount-banner h3 {
+    font-size:23px;
+    margin-bottom:10px;
+}
+
+.discount-banner p { color:#e0f5ff; }
+
+.discount-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:15px;
+}
+
+.discount-item {
+    background:#ffffff18;
+    border:1px solid #ffffff40;
+    border-radius:8px;
+    padding:15px;
+    text-align:center;
+}
+
+.discount-item strong {
+    display:block;
+    font-size:28px;
+}
+
+/* CALCULATOR */
+
+.calculator {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.calc-box {
+    background:var(--card);
+    padding:27px;
+    border:1px solid var(--border);
+    border-radius:12px;
+}
+
+input,select,textarea {
+    width:100%;
+    padding:12px;
+    margin:8px 0 17px;
+    border-radius:6px;
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+}
+
+input:focus,select:focus,textarea:focus {
+    outline:1px solid var(--blue);
+}
+
+.calc-row {
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:13px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.total {
+    font-size:23px;
+    font-weight:bold;
+    color:var(--blue);
+}
+
+.discount-highlight {
+    color:#16c784;
+    font-weight:bold;
+}
+
+.discount-note {
+    padding:13px;
+    border-radius:8px;
+    background:var(--card2);
+    margin:15px 0;
+    font-size:13px;
+}
+
+/* CONTACT */
+
+.contact-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.contact-info,.contact-form {
+    background:var(--card);
+    padding:30px;
+    border-radius:12px;
+    border:1px solid var(--border);
+}
+
+/* FOOTER */
+
+footer {
+    padding:30px;
+    text-align:center;
+    border-top:1px solid var(--border);
+    color:var(--muted);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px) {
+
+    .nav-links {
+        display:none;
+        position:absolute;
+        top:75px;
+        left:0;
+        width:100%;
+        background:var(--card);
+        padding:25px;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .nav-links.show { display:flex; }
+
+    .menu-btn { display:inline-block; }
+
+    .hero-content,
+    .about-grid,
+    .calculator,
+    .contact-grid {
+        grid-template-columns:1fr;
+    }
+
+    .cards,.gallery {
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px) {
+
+    .cards,.gallery { grid-template-columns:1fr; }
+
+    .stats-grid { grid-template-columns:repeat(2,1fr); }
+
+    .stat { border:0; }
+
+    .hero h1 { font-size:45px; }
+
+    h2 { font-size:29px; }
+
+    .discount-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<header>
+<div class="container">
+<nav>
+
+<div class="logo">
+<img src="LOGO.jpg" alt="AURA VISION Logo">
+<span>AURA<span class="blue">VISION</span></span>
+</div>
+
+<div class="nav-links" id="navLinks">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#features">Features</a>
+<a href="#solutions">Solutions</a>
+<a href="#specs">Specifications</a>
+<a href="#gallery">Gallery</a>
+<a href="#pricing">Pricing</a>
+<a href="#comparison">Comparison</a>
+<a href="#contact">Contact</a>
+</div>
+
+<div>
+<button class="theme-btn" onclick="toggleTheme()">☾ Theme</button>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+</div>
+
+</nav>
+</div>
+</header>
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+<div class="container hero-content">
+
+<div>
+<p class="tagline">THE FUTURE IS IN YOUR SIGHT</p>
+
+<h1>
+SEE BEYOND<br>
+<span class="blue">REALITY.</span>
+</h1>
+
+<p>
+Experience the next generation of wearable technology
+with AURA VISION AR Glasses 3.0. Combining artificial
+intelligence, advanced visual sensors, brain-computer
+interface technology, and futuristic smart contact lens
+concepts, AURA VISION aims to transform how people
+communicate, work, navigate, and experience the world.
+</p>
+
+<div class="hero-buttons">
+<a href="#products" class="btn">Explore Products</a>
+<a href="#contact" class="btn btn-outline">Contact Us</a>
+</div>
+</div>
+
+<div class="hero-image">
+<img src="LOGO.jpg"
+alt="AURA VISION Augmented Reality Glasses"
+onclick="zoomImage(this)">
+</div>
+
+</div>
+</section>
+
+<!-- STATISTICS -->
+
+<div class="stats">
+<div class="container stats-grid">
+
+<div class="stat">
+<strong>AR 3.0</strong>
+<span>Next-Generation Technology</span>
+</div>
+
+<div class="stat">
+<strong>AI + BCI</strong>
+<span>Intelligent Interaction</span>
+</div>
+
+<div class="stat">
+<strong>360°</strong>
+<span>Enhanced Awareness Goal</span>
+</div>
+
+<div class="stat">
+<strong>2-in-1</strong>
+<span>Glasses and Lens Concepts</span>
+</div>
+
+</div>
+</div>
+
+<!-- PRODUCTS -->
+
+<section id="products">
+<div class="container">
+
+<div class="section-title">
+<p class="tagline">OUR PRODUCT LINE</p>
+<h2>Introducing <span class="blue">AURA VISION 3.0</span></h2>
+<p>
+A next-generation wearable technology concept
+designed to extend human interaction with the digital world.
+</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="icon">◉</div>
+<h3>AURA AR Glasses 3.0</h3>
+<p>
+Advanced augmented reality glasses featuring
+brain-computer interface control, thermal vision,
+adaptive smart-tint lenses, spatial audio,
+and intelligent AI assistance.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">◎</div>
+<h3>AURA Bio-Synthetic Contact Lens</h3>
+<p>
+A futuristic contact lens research concept
+exploring retinal projection, holographic
+visual experiences, and energy harvesting
+through advanced bio-compatible technology.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">✧</div>
+<h3>AURA AI Ecosystem</h3>
+<p>
+An intelligent companion platform that
+connects wearable devices, AI visual analysis,
+personalized notifications, and contextual
+digital assistance.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+<div class="container about-grid">
+
+<div class="about-content">
+
+<p class="tagline">ABOUT THE PRODUCT</p>
+
+<h2>
+Redefining the Future of
+<span class="blue">Human Vision.</span>
+</h2>
+
+<h3>Product Background</h3>
+
+<p>
+AURA VISION was developed as a next-generation
+augmented reality product concept designed to
+go beyond conventional smart glasses. While
+first-generation AR glasses focus on voice commands,
+gesture navigation, translation overlays, and AI-powered
+information, AURA VISION 3.0 explores more advanced
+ways for humans to interact with technology.
+</p>
+
+<h3>Purpose</h3>
+
+<p>
+The purpose of AURA VISION is to reduce dependence
+on smartphones, improve accessibility, enhance
+workplace safety, overcome language barriers,
+and provide intelligent real-time information
+through wearable technology.
+</p>
+
+<h3>Product Description</h3>
+
+<p>
+AURA VISION AR Glasses 3.0 combines advanced
+visual intelligence, neural interaction concepts,
+adaptive lenses, and spatial audio. Its companion
+smart contact lens concept explores a future
+where the physical glasses frame may be replaced
+by an ultra-compact visual interface.
+</p>
+
+<ul class="about-list">
+<li>Brain-computer interface interaction concept</li>
+<li>AI-powered thermal and night vision assistance</li>
+<li>Dynamic smart-tint technology</li>
+<li>Spatial audio and bone-conduction concept</li>
+<li>Advanced energy-harvesting research</li>
+</ul>
+
+</div>
+
+<div class="about-image">
+<img src="dalawa.jpg"
+alt="AURA VISION AR Glasses Concept"
+onclick="zoomImage(this)">
+</div>
+
+</div>
+</section>
+
+<!-- FEATURES -->
+
+<section id="features">
+<div class="container">
+
+<div class="section-title">
+<p class="tagline">NEXT-GENERATION INNOVATION</p>
+<h2>Advanced <span class="blue">AR 3.0 Features</span></h2>
+<p>
+Six proposed upgrades designed to move beyond
+traditional augmented reality technology.
+</p>
+</div>
+
+<div class="cards">
+
+<div class="card feature-card">
+<div class="icon">🧠</div>
+<h3>1. Brain-Computer Interface (BCI)</h3>
+<p>
+Neural sensors positioned around the glasses'
+temples and behind the ears explore the possibility
+of interpreting selected brain signals.
+Users could potentially control applications,
+dismiss notifications, and navigate interfaces
+without speaking or using hand gestures.
+</p>
+</div>
+
+<div class="card feature-card">
+<div class="icon">🧬</div>
+<h3>2. Bio-Synthetic Holographic Contact Lens</h3>
+<p>
+A futuristic lens concept designed to explore
+retinal projection, compact holographic displays,
+and bio-compatible materials. Research may
+investigate tear-powered biofuel cells as
+a potential supplementary energy source.
+</p>
+</div>
+
+<div class="card feature-card">
+<div class="icon">👁️</div>
+<h3>3. Adaptive Thermal & Night Vision</h3>
+<p>
+Advanced infrared sensors and AI image processing
+could help identify heat patterns, overheating
+equipment, and objects in low-light environments.
+</p>
+</div>
+
+<div class="card feature-card">
+<div class="icon">🕶️</div>
+<h3>4. Dynamic Smart-Tint Technology</h3>
+<p>
+Electronically adjustable lenses designed to
+control brightness and opacity based on the
+environment and user preferences.
+</p>
+</div>
+
+<div class="card feature-card">
+<div class="icon">🔊</div>
+<h3>5. Bone-Conduction Spatial Audio</h3>
+<p>
+Integrated bone-conduction audio and directional
+sound processing could improve voice clarity
+while reducing unwanted environmental noise.
+</p>
+</div>
+
+<div class="card feature-card">
+<div class="icon">🔋</div>
+<h3>6. Kinetic & Ambient Energy Harvesting</h3>
+<p>
+Future energy systems may combine transparent
+solar materials with kinetic energy harvesting.
+These technologies could supplement battery
+power and reduce charging frequency.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- REAL WORLD SOLUTIONS -->
+
+<section id="solutions">
+<div class="container">
+
+<div class="section-title">
+<p class="tagline">REAL-WORLD APPLICATIONS</p>
+<h2>Problems We Aim to <span class="blue">Solve</span></h2>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="solution-number">01</div>
+<h3>Language and Cultural Barriers</h3>
+<p><b>Problem:</b></p>
+<p>Travelers, professionals, and migrant workers may experience communication difficulties when interacting with people who speak different languages.</p>
+<br>
+<p><b>AURA VISION Solution:</b></p>
+<p>Real-time AI translation could display translated subtitles in the user's field of view while spatial audio provides translated speech.</p>
+</div>
+
+<div class="card">
+<div class="solution-number">02</div>
+<h3>Commuter and Driver Safety</h3>
+<p><b>Problem:</b></p>
+<p>Smartphone distractions, poor visibility, and delayed awareness of road hazards can increase transportation risks.</p>
+<br>
+<p><b>AURA VISION Solution:</b></p>
+<p>Contextual navigation, object detection, and thermal assistance could provide additional hazard information without requiring users to look down at a phone.</p>
+</div>
+
+<div class="card">
+<div class="solution-number">03</div>
+<h3>High-Risk Industrial Repairs</h3>
+<p><b>Problem:</b></p>
+<p>Technicians may struggle to identify equipment failures, overheating components, and technical repair procedures.</p>
+<br>
+<p><b>AURA VISION Solution:</b></p>
+<p>AI visual recognition and thermal mapping could highlight potential problem areas and display step-by-step maintenance instructions.</p>
+</div>
+
+<div class="card">
+<div class="solution-number">04</div>
+<h3>Digital Fatigue and Text Neck</h3>
+<p><b>Problem:</b></p>
+<p>Constantly looking down at smartphones can contribute to poor posture, neck strain, and reduced awareness of surroundings.</p>
+<br>
+<p><b>AURA VISION Solution:</b></p>
+<p>Eye-level information and hands-free interaction could reduce unnecessary smartphone use.</p>
+</div>
+
+<div class="card">
+<div class="solution-number">05</div>
+<h3>Accessibility for Persons with Disabilities</h3>
+<p><b>Problem:</b></p>
+<p>People with visual or hearing impairments may experience difficulties navigating public environments and communicating.</p>
+<br>
+<p><b>AURA VISION Solution:</b></p>
+<p>AI-powered environmental descriptions, spoken alerts, live captions, and visual communication assistance could provide additional accessibility support.</p>
+</div>
+
+<div class="card">
+<div class="solution-number">06</div>
+<h3>Emergency Response and Public Safety</h3>
+<p><b>Problem:</b></p>
+<p>Emergency personnel may face limited visibility, complex surroundings, and time-sensitive decision-making.</p>
+<br>
+<p><b>AURA VISION Solution:</b></p>
+<p>Thermal imaging assistance, contextual information, and hands-free communication could support situational awareness.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- SPECIFICATIONS -->
+
+<section id="specs">
+<div class="container">
+
+<div class="section-title">
+<p class="tagline">TECHNICAL INFORMATION</p>
+<h2>Technical <span class="blue">Specifications</span></h2>
+</div>
+
+<div class="table-container">
+
+<table>
+
+<tr>
+<th>Specifications</th>
+<th>AR Glasses 3.0</th>
+<th>Smart Contact Lens</th>
+</tr>
+
+<tr>
+<td>Product Type</td>
+<td>Advanced Augmented Reality Glasses</td>
+<td>Bio-Synthetic Smart Contact Lens Concept</td>
+</tr>
+
+<tr>
+<td>Display Technology</td>
+<td>Microdisplay / Optical Waveguide</td>
+<td>Retinal Projection Research Concept</td>
+</tr>
+
+<tr>
+<td>Artificial Intelligence</td>
+<td>AI Visual Recognition and Assistance</td>
+<td>Potential Companion AI Integration</td>
+</tr>
+
+<tr>
+<td>Brain Interface</td>
+<td>Experimental BCI Sensors</td>
+<td>Not Established</td>
+</tr>
+
+<tr>
+<td>Visual Sensors</td>
+<td>RGB / Infrared / Thermal Sensors</td>
+<td>To Be Determined</td>
+</tr>
+
+<tr>
+<td>Audio Technology</td>
+<td>Bone-Conduction Spatial Audio</td>
+<td>Companion Glasses Audio</td>
+</tr>
+
+<tr>
+<td>Lens Technology</td>
+<td>Dynamic Smart-Tint Lenses</td>
+<td>Biocompatible Smart Lens Materials</td>
+</tr>
+
+<tr>
+<td>Connectivity</td>
+<td>5G / Wi-Fi / Bluetooth</td>
+<td>Wireless Architecture Under Research</td>
+</tr>
+
+<tr>
+<td>Power Source</td>
+<td>Rechargeable Battery / Energy Harvesting</td>
+<td>Experimental Biofuel Cell Concept</td>
+</tr>
+
+<tr>
+<td>Interaction</td>
+<td>BCI / Voice / Gesture / Touch</td>
+<td>Under Research</td>
+</tr>
+
+<tr>
+<td>Operating System</td>
+<td>Proposed AURA AI Platform</td>
+<td>Companion System</td>
+</tr>
+
+<tr>
+<td>Product Status</td>
+<td>Concept / Development</td>
+<td>Research Concept</td>
+</tr>
+
+</table>
+
+</div>
+
+<p style="margin-top:20px">
+<strong>Technical Note:</strong>
+These specifications represent proposed future technologies,
+not verified capabilities of a commercially available device.
+Advanced BCI, retinal projection, biofuel-powered lenses,
+and thermal vision require significant research and safety validation.
+</p>
+
+</div>
+</section>
+
+<!-- GALLERY -->
+
+<section id="gallery">
+<div class="container">
+
+<div class="section-title">
+<p class="tagline">VISUAL SHOWCASE</p>
+<h2>AURA VISION <span class="blue">Gallery</span></h2>
+<p>Click an image to enlarge it.</p>
+</div>
+
+<div class="gallery">
+
+<div class="gallery-item">
+<img src="glass.jpg"
+alt="AURA VISION AR Glasses 3.0"
+onclick="zoomImage(this)">
+<h3>AURA AR Glasses 3.0</h3>
+<p>Advanced augmented reality glasses with intelligent visual overlays.</p>
+</div>
+
+<div class="gallery-item">
+<img src="lens.jpg"
+alt="AURA Smart Contact Lens Concept"
+onclick="zoomImage(this)">
+<h3>AURA Smart Contact Lens</h3>
+<p>Future bio-synthetic and holographic contact lens research concept.</p>
+</div>
+
+<div class="gallery-item">
+<img src="dalawa.jpg"
+alt="AURA VISION Wearable Technology"
+onclick="zoomImage(this)">
+<h3>AURA AI Wearable Ecosystem</h3>
+<p>Integrated visual intelligence and hands-free interaction concept.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- IMAGE ZOOM -->
+
+<div id="imageModal" onclick="closeZoom()">
+<button onclick="closeZoom()">×</button>
+<img id="zoomedImage" alt="Product image preview">
+</div>
+
+<!-- PRICING -->
+
+<section id="pricing">
+<div class="container">
+
+<div class="section-title">
+<p class="tagline">SELLING PRICE</p>
+<h2>Choose Your <span class="blue">AURA Product</span></h2>
+<p>Estimated prices</p>
+</div>
+
+<div class="discount-banner">
+
+<h3>Special Bulk Purchase Discount!</h3>
+
+<p>Purchase more products and enjoy automatic discounts on your order.</p>
+
+<div class="discount-grid">
+
+<div class="discount-item">
+<strong>10% OFF</strong>
+Buy 2 Products
+</div>
+
+<div class="discount-item">
+<strong>20% OFF</strong>
+Buy 3 or More Products
+</div>
+
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card price-card">
+
+<h3>AURA AR Glasses 3.0</h3>
+
+<div class="price">₱29,999</div>
+
+<ul>
+<li>Advanced AR Glasses Concept</li>
+<li>AI Visual Assistance</li>
+<li>Voice and Gesture Navigation</li>
+<li>Thermal Vision Concept</li>
+<li>Spatial Audio Concept</li>
+<li>Protective Packaging</li>
+</ul>
+
+<button class="btn" onclick="selectProduct('glasses')">
+Add to Calculator
+</button>
+
+</div>
+
+<div class="card price-card">
+
+<h3>AURA Bio-Synthetic Contact Lens</h3>
+
+<div class="price">₱49,999</div>
+
+<ul>
+<li>Smart Contact Lens Research Concept</li>
+<li>Bio-Synthetic Technology Research</li>
+<li>Holographic Display Feasibility</li>
+<li>Advanced Lens Research</li>
+<li>Research Documentation</li>
+<li>Safety Validation Not Included</li>
+</ul>
+
+<button class="btn" onclick="selectProduct('lens')">
+Add to Calculator
+</button>
+
+</div>
+
+<div class="card price-card">
+
+<h3>AURA Vision Duo Package</h3>
+
+<div class="price">₱79,998</div>
+
+<ul>
+<li>1 AURA AR Glasses 3.0</li>
+<li>1 AURA Contact Lens Concept</li>
+<li>Combined Product Package</li>
+<li>Premium Packaging</li>
+<li>Automatic Quantity Discounts</li>
+</ul>
+
+<button class="btn" onclick="selectProduct('both')">
+Add to Calculator
+</button>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- PRICE CALCULATOR -->
+
+<section id="calculator">
+<div class="container">
+
+<div class="section-title">
+<p class="tagline">INSTANT PRICE ESTIMATE</p>
+<h2>Price <span class="blue">Calculator</span></h2>
+<p>
+Calculate your order with automatic bulk discounts,
+tax, packaging, and additional fees.
+</p>
+</div>
+
+<div class="calculator">
+
+<div class="calc-box">
+
+<h3>Select Your Products</h3>
+
+<label>AURA AR Glasses 3.0</label>
+<input type="number" id="glassesQty"
+value="0" min="0" step="1" oninput="calculatePrice()">
+
+<label>AURA Smart Contact Lens</label>
+<input type="number" id="lensQty"
+value="0" min="0" step="1" oninput="calculatePrice()">
+
+<label>Tax (%)</label>
+<input type="number" id="tax"
+value="12" min="0" step="0.01" oninput="calculatePrice()">
+
+<label>Packaging Fee (₱ per product)</label>
+<input type="number" id="packaging"
+value="350" min="0" oninput="calculatePrice()">
+
+<label>Additional Fee (₱)</label>
+<input type="number" id="additional"
+value="0" min="0" oninput="calculatePrice()">
+
+<div class="discount-note">
+<strong>Automatic Discount Rules</strong><br>
+1 product = No Discount<br>
+2 products = 10% Discount<br>
+3 or more products = 20% Discount<br><br>
+The discount is applied to the combined product subtotal.
+You can combine glasses and contact lenses to qualify.
+</div>
+
+</div>
+
+<div class="calc-box">
+
+<h3>Order Summary</h3>
+
+<div class="calc-row">
+<span>Total Products</span>
+<strong id="totalQty">0</strong>
+</div>
+
+<div class="calc-row">
+<span>Glasses Subtotal</span>
+<strong id="glassesSubtotal">₱0.00</strong>
+</div>
+
+<div class="calc-row">
+<span>Contact Lens Subtotal</span>
+<strong id="lensSubtotal">₱0.00</strong>
+</div>
+
+<div class="calc-row">
+<span>Product Subtotal</span>
+<strong id="subtotal">₱0.00</strong>
+</div>
+
+<div class="calc-row">
+<span>Quantity Discount</span>
+<strong id="discountAmount" class="discount-highlight">₱0.00</strong>
+</div>
+
+<div class="calc-row">
+<span>Discount Rate</span>
+<strong id="discountRate" class="discount-highlight">0%</strong>
+</div>
+
+<div class="calc-row">
+<span>Packaging Fee</span>
+<strong id="packAmount">₱0.00</strong>
+</div>
+
+<div class="calc-row">
+<span>Additional Fee</span>
+<strong id="additionalAmount">₱0.00</strong>
+</div>
+
+<div class="calc-row">
+<span>Tax</span>
+<strong id="taxAmount">₱0.00</strong>
+</div>
+
+<div class="calc-row total">
+<span>Estimated Total</span>
+<strong id="total">₱0.00</strong>
+</div>
+
+<button class="btn" onclick="copyQuotation()">
+Copy Price Quotation
+</button>
+
+<button class="btn btn-outline" onclick="resetCalculator()">
+Reset Calculator
+</button>
+
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- COMPARISON -->
+
+<section id="comparison">
+<div class="container">
+
+<div class="section-title">
+<p class="tagline">COMPETITIVE ANALYSIS</p>
+<h2>Product <span class="blue">Comparison</span></h2>
+<p>
+Compare AURA VISION's proposed technology
+with conventional smart glasses and regular contact lenses.
+</p>
+</div>
+
+<div class="table-container">
+
+<table>
+
+<tr>
+<th>Technology</th>
+<th>AURA VISION 3.0</th>
+<th>Conventional Smart Glasses</th>
+<th>Regular Contact Lens</th>
+</tr>
+
+<tr>
+<td>AR Visual Overlays</td>
+<td>Proposed Advanced AR</td>
+<td>Available on Selected Models</td>
+<td>Not Available</td>
+</tr>
+
+<tr>
+<td>Voice Commands</td>
+<td>Yes / Proposed</td>
+<td>Available on Selected Models</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>Gesture Navigation</td>
+<td>Yes / Proposed</td>
+<td>Model Dependent</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>Brain-Computer Interface</td>
+<td>Experimental BCI Concept</td>
+<td>Not Commonly Available</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>Thermal Vision</td>
+<td>Proposed Integration</td>
+<td>Limited / Model Dependent</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>Smart-Tint Technology</td>
+<td>Advanced Adaptive Concept</td>
+<td>Model Dependent</td>
+<td>Not Available</td>
+</tr>
+
+<tr>
+<td>Spatial Audio</td>
+<td>Proposed Bone Conduction</td>
+<td>Available on Selected Models</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>Energy Harvesting</td>
+<td>Research Concept</td>
+<td>Not Commonly Available</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>Holographic Contact Lens</td>
+<td>Future Research Concept</td>
+<td>No</td>
+<td>No</td>
+</tr>
+
+</table>
+
+</div>
+
+<br>
+
+<div class="cards">
+
+<div class="card">
+<h3 class="blue">Similarities</h3>
+<p>
+AURA VISION and conventional smart glasses
+share the goal of integrating digital information
+into everyday activities through wearable
+technology, AI assistance, and visual displays.
+</p>
+</div>
+
+<div class="card">
+<h3 class="blue">Differences</h3>
+<p>
+AURA VISION explores additional technologies
+such as brain-computer interface interaction,
+thermal imaging assistance, dynamic smart-tint
+lenses, and energy harvesting.
+</p>
+</div>
+
+<div class="card">
+<h3 class="blue">Competitive Advantage</h3>
+<p>
+Its proposed direction combines multiple
+advanced technologies in one wearable ecosystem
+while exploring a future transition from
+traditional glasses to smart contact lenses.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+<div class="container">
+
+<div class="section-title">
+<p class="tagline">GET IN TOUCH</p>
+<h2>Contact <span class="blue">AURA VISION</span></h2>
+<p>
+Have questions, suggestions, or partnership inquiries?
+We would love to hear from you.
+</p>
+</div>
+
+<div class="contact-grid">
+
+<div class="contact-info">
+
+<h3>AURA VISION</h3>
+
+<br>
+
+<p>
+Our mission is to redefine human interaction
+with technology through intelligent wearable
+devices and augmented reality innovation.
+</p>
+
+<br>
+
+<p>✉ Email: auravision@company.tech</p>
+<br>
+<p>☎ Phone: +63 915 880 7065</p>
+<br>
+<p>⌖ Philippines</p>
+
+<br>
+
+<p class="blue">SEE BEYOND WHAT IS POSSIBLE.</p>
+
+</div>
+
+<form class="contact-form" id="contactForm">
+
+<label>Full Name</label>
+<input type="text" id="name" required placeholder="Enter your full name">
+
+<label>Email Address</label>
+<input type="email" id="email" required placeholder="Enter your email">
+
+<label>Product of Interest</label>
+
+<select id="interest">
+<option>AURA AR Glasses 3.0</option>
+<option>AURA Bio-Synthetic Contact Lens</option>
+<option>AURA Vision Duo Package</option>
+<option>Business Partnership</option>
+<option>Other Inquiry</option>
+</select>
+
+<label>Message</label>
+<textarea id="message" rows="5" required placeholder="Write your message here..."></textarea>
+
+<button type="submit" class="btn">Send Inquiry</button>
+
+</form>
+
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+<p>© 2026 AURA VISION. All Rights Reserved.</p>
+<p>Augmented Reality Glasses 3.0 | Bio-Synthetic Smart Contact Lens</p>
+<p>SEE BEYOND REALITY.</p>
+</footer>
+
+<script>
+
+/* DARK MODE */
+
+function toggleTheme() {
+
+    const current =
+        document.documentElement.getAttribute("data-theme");
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        current === "light" ? "dark" : "light"
+    );
+
+}
+
+/* MOBILE MENU */
+
+function toggleMenu() {
+
+    document.getElementById("navLinks")
+        .classList.toggle("show");
+
+}
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        document.getElementById("navLinks")
+            .classList.remove("show");
+
+    });
+
+});
+
+/* IMAGE ZOOM */
+
+function zoomImage(image) {
+
+    document.getElementById("imageModal").style.display = "flex";
+
+    document.getElementById("zoomedImage").src = image.src;
+
+}
+
+function closeZoom() {
+
+    document.getElementById("imageModal").style.display = "none";
+
+}
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        closeZoom();
+    }
+
+});
+
+/* PRODUCT PRICES */
+
+const GLASSES_PRICE = 29999;
+const LENS_PRICE = 49999;
+
+/* SELECT PRODUCTS */
+
+function selectProduct(product) {
+
+    if (product === "glasses") {
+        document.getElementById("glassesQty").value =
+            Number(document.getElementById("glassesQty").value) + 1;
+    }
+
+    if (product === "lens") {
+        document.getElementById("lensQty").value =
+            Number(document.getElementById("lensQty").value) + 1;
+    }
+
+    if (product === "both") {
+        document.getElementById("glassesQty").value =
+            Number(document.getElementById("glassesQty").value) + 1;
+
+        document.getElementById("lensQty").value =
+            Number(document.getElementById("lensQty").value) + 1;
+    }
+
+    calculatePrice();
+
+    document.getElementById("calculator")
+        .scrollIntoView({behavior:"smooth"});
+
+}
+
+/* PRICE CALCULATOR WITH AUTOMATIC DISCOUNT */
+
+function calculatePrice() {
+
+    const glassesQty = Math.max(
+        0,
+        Math.floor(Number(document.getElementById("glassesQty").value) || 0)
+    );
+
+    const lensQty = Math.max(
+        0,
+        Math.floor(Number(document.getElementById("lensQty").value) || 0)
+    );
+
+    const totalQty = glassesQty + lensQty;
+
+    const taxRate = Math.max(
+        0,
+        Number(document.getElementById("tax").value) || 0
+    ) / 100;
+
+    const packagingRate = Math.max(
+        0,
+        Number(document.getElementById("packaging").value) || 0
+    );
+
+    const additional = Math.max(
+        0,
+        Number(document.getElementById("additional").value) || 0
+    );
+
+    /* PRODUCT SUBTOTAL */
+
+    const glassesSubtotal = glassesQty * GLASSES_PRICE;
+
+    const lensSubtotal = lensQty * LENS_PRICE;
+
+    const subtotal = glassesSubtotal + lensSubtotal;
+
+    /* AUTOMATIC QUANTITY DISCOUNT */
+
+    let discountRate = 0;
+
+    if (totalQty >= 3) {
+
+        discountRate = 0.20;
+
+    } else if (totalQty === 2) {
+
+        discountRate = 0.10;
+
+    }
+
+    const discount = subtotal * discountRate;
+
+    /* OTHER FEES */
+
+    const packaging = totalQty * packagingRate;
+
+    /* TAX COMPUTATION */
+
+    const taxable =
+        subtotal - discount + packaging + additional;
+
+    const tax = taxable * taxRate;
+
+    const total = taxable + tax;
+
+    /* CURRENCY FORMAT */
+
+    const peso = value =>
+        "₱" + value.toLocaleString("en-PH", {
+            minimumFractionDigits:2,
+            maximumFractionDigits:2
+        });
+
+    /* DISPLAY RESULTS */
+
+    document.getElementById("totalQty").textContent =
+        totalQty;
+
+    document.getElementById("glassesSubtotal").textContent =
+        peso(glassesSubtotal);
+
+    document.getElementById("lensSubtotal").textContent =
+        peso(lensSubtotal);
+
+    document.getElementById("subtotal").textContent =
+        peso(subtotal);
+
+    document.getElementById("discountAmount").textContent =
+        "-" + peso(discount);
+
+    document.getElementById("discountRate").textContent =
+        (discountRate * 100) + "%";
+
+    document.getElementById("packAmount").textContent =
+        peso(packaging);
+
+    document.getElementById("additionalAmount").textContent =
+        peso(additional);
+
+    document.getElementById("taxAmount").textContent =
+        peso(tax);
+
+    document.getElementById("total").textContent =
+        peso(total);
+
+    /* SAVE QUOTATION */
+
+    window.lastQuotation = {
+
+        glassesQty,
+        lensQty,
+        totalQty,
+        glassesSubtotal,
+        lensSubtotal,
+        subtotal,
+        discountRate,
+        discount,
+        packaging,
+        additional,
+        tax,
+        total
+
+    };
+
+}
+
+/* RESET CALCULATOR */
+
+function resetCalculator() {
+
+    document.getElementById("glassesQty").value = 0;
+
+    document.getElementById("lensQty").value = 0;
+
+    document.getElementById("tax").value = 12;
+
+    document.getElementById("packaging").value = 350;
+
+    document.getElementById("additional").value = 0;
+
+    calculatePrice();
+
+}
+
+/* COPY QUOTATION */
+
+function copyQuotation() {
+
+    calculatePrice();
+
+    const q = window.lastQuotation;
+
+    if (q.totalQty === 0) {
+
+        alert("Please select at least one product.");
+
+        return;
+
+    }
+
+    const quotation = `
+================================
+       AURA VISION
+       PRICE QUOTATION
+================================
+
+AURA AR Glasses 3.0
+Quantity: ${q.glassesQty}
+Subtotal: ₱${q.glassesSubtotal.toFixed(2)}
+
+AURA Smart Contact Lens
+Quantity: ${q.lensQty}
+Subtotal: ₱${q.lensSubtotal.toFixed(2)}
+
+--------------------------------
+Total Products: ${q.totalQty}
+Product Subtotal: ₱${q.subtotal.toFixed(2)}
+Discount Rate: ${(q.discountRate * 100)}%
+Discount: -₱${q.discount.toFixed(2)}
+Packaging Fee: ₱${q.packaging.toFixed(2)}
+Additional Fee: ₱${q.additional.toFixed(2)}
+Tax: ₱${q.tax.toFixed(2)}
+
+================================
+ESTIMATED TOTAL:
+₱${q.total.toFixed(2)}
+================================
+
+Thank you for choosing AURA VISION!
+Prices are estimates and subject to confirmation.
+`;
+
+    navigator.clipboard.writeText(quotation)
+        .then(() => alert("Quotation copied successfully!"))
+        .catch(() => alert(quotation));
+
+}
+
+/* CONTACT FORM */
+
+document.getElementById("contactForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("name").value;
+
+    const email =
+        document.getElementById("email").value;
+
+    const interest =
+        document.getElementById("interest").value;
+
+    const message =
+        document.getElementById("message").value;
+
+    const subject = encodeURIComponent(
+        "AURA VISION Product Inquiry"
+    );
+
+    const body = encodeURIComponent(
+        "Name: " + name +
+        "\nEmail: " + email +
+        "\nProduct: " + interest +
+        "\nMessage: " + message
+    );
+
+    window.location.href =
+        "mailto:auravision@example.com?subject=" +
+        subject + "&body=" + body;
+
+});
+
+/* INITIALIZE */
+
+calculatePrice();
+
+</script>
+
+</body>
+</html>
